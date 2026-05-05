@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — KODE.BWM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor-glow" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<header class="header" id="header">
+  <div class="logo">
+    <div class="logo-icon">K</div>
+    <div><h2>KODE<span>.BWM</span></h2><small>Web & Graphic Solutions</small></div>
+  </div>
+  <nav class="nav" id="nav">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="index.html#about"><i class="fas fa-user"></i> About</a>
+    <a href="services.html"><i class="fas fa-laptop-code"></i> Services</a>
+    <a href="gallery.html"><i class="fas fa-image"></i> Gallery</a>
+    <a href="pricing.html"><i class="fas fa-coins"></i> Pricing</a>
+    <a href="index.html#contact"><i class="fas fa-phone"></i> Contact</a>
+    <a href="portfolio.html"><i class="fas fa-folder"></i> Portfolio</a>
+  </nav>
+  <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+</header>
+
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <i class="fas fa-chevron-right"></i>
+    <span>Services</span>
+  </div>
+  <h1>Our <span class="accent">Services</span></h1>
+  <p>Everything you need to build a powerful digital presence</p>
+</div>
+
+<div class="page-content">
+  <div class="services-full-grid">
+
+    <div class="service-full-card">
+      <div class="sfc-icon"><i class="fas fa-globe"></i></div>
+      <div class="sfc-body">
+        <h3>Web Development</h3>
+        <p>We build fast, modern and fully responsive websites tailored to your brand and goals. From simple landing pages to complex portals — we do it all.</p>
+        <ul class="sfc-list">
+          <li><i class="fas fa-check"></i> Business & corporate websites</li>
+          <li><i class="fas fa-check"></i> School & church websites</li>
+          <li><i class="fas fa-check"></i> eCommerce stores</li>
+          <li><i class="fas fa-check"></i> Landing pages & portfolios</li>
+          <li><i class="fas fa-check"></i> Blog & news platforms</li>
+          <li><i class="fas fa-check"></i> SEO optimization included</li>
+        </ul>
+        <button class="btn-primary" onclick="openOnboarding()"><i class="fab fa-whatsapp"></i> Request This Service</button>
+      </div>
+    </div>
+
+    <div class="service-full-card">
+      <div class="sfc-icon graphic"><i class="fas fa-palette"></i></div>
+      <div class="sfc-body">
+        <h3>Graphic Design</h3>
+        <p>We craft visual identities that make your brand unforgettable. Logos, posters, branding kits — designed with precision and creativity.</p>
+        <ul class="sfc-list">
+          <li><i class="fas fa-check"></i> Logo design & brand identity</li>
+          <li><i class="fas fa-check"></i> Posters & flyers (print & digital)</li>
+          <li><i class="fas fa-check"></i> Social media templates</li>
+          <li><i class="fas fa-check"></i> Business cards & stationery</li>
+          <li><i class="fas fa-check"></i> Branding packages</li>
+          <li><i class="fas fa-check"></i> Event & church banners</li>
+        </ul>
+        <button class="btn-primary" onclick="openOnboarding()"><i class="fab fa-whatsapp"></i> Request This Service</button>
+      </div>
+    </div>
+
+    <div class="service-full-card">
+      <div class="sfc-icon ict"><i class="fas fa-tools"></i></div>
+      <div class="sfc-body">
+        <h3>ICT Support</h3>
+        <p>Reliable, hands-on tech support for individuals, businesses and schools. We fix it fast so you can focus on what matters.</p>
+        <ul class="sfc-list">
+          <li><i class="fas fa-check"></i> Computer repair & maintenance</li>
+          <li><i class="fas fa-check"></i> Network setup & troubleshooting</li>
+          <li><i class="fas fa-check"></i> Software installation & setup</li>
+          <li><i class="fas fa-check"></i> Data recovery & backup</li>
+          <li><i class="fas fa-check"></i> CCTV & security systems</li>
+          <li><i class="fas fa-check"></i> On-site & remote support</li>
+        </ul>
+        <button class="btn-primary" onclick="openOnboarding()"><i class="fab fa-whatsapp"></i> Request This Service</button>
+      </div>
+    </div>
+
+    <div class="service-full-card">
+      <div class="sfc-icon social"><i class="fas fa-share-alt"></i></div>
+      <div class="sfc-body">
+        <h3>Social Media Management</h3>
+        <p>Let us run your online presence while you focus on your business. Consistent posts, professional graphics and audience growth.</p>
+        <ul class="sfc-list">
+          <li><i class="fas fa-check"></i> Monthly content calendars</li>
+          <li><i class="fas fa-check"></i> Branded post designs</li>
+          <li><i class="fas fa-check"></i> Caption writing & strategy</li>
+          <li><i class="fas fa-check"></i> Facebook, Instagram, Twitter/X</li>
+          <li><i class="fas fa-check"></i> Analytics & reporting</li>
+          <li><i class="fas fa-check"></i> Community management</li>
+        </ul>
+        <button class="btn-primary" onclick="openOnboarding()"><i class="fab fa-whatsapp"></i> Request This Service</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="float-group">
+  <button class="float-btn get-started-float" onclick="openOnboarding()" title="Get Started">
+    <i class="fas fa-rocket"></i>
+    <span class="float-label">Get Started</span>
+  </button>
+  <a href="https://wa.me/256704125517" class="float-btn whatsapp-float" target="_blank" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="float-label">WhatsApp</span>
+  </a>
+</div>
+
+<!-- ONBOARDING MODAL (same as index) -->
+<div class="modal-overlay" id="onboardingModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeOnboarding()"><i class="fas fa-times"></i></button>
+    <div class="modal-header">
+      <div class="modal-logo">K</div>
+      <h2>Start Your Project</h2>
+      <p>Fill in your details and we'll get back to you within 24 hours</p>
+    </div>
+    <div class="modal-steps">
+      <div class="step active" id="step1">
+        <h3>Step 1: Personal Info</h3>
+        <input type="text" id="ob-name" placeholder="Your Full Name *">
+        <input type="text" id="ob-company" placeholder="Company / Organization Name">
+        <input type="email" id="ob-email" placeholder="Email Address *">
+        <div class="phone-group">
+          <div class="flag-selector small" id="obFlagSelector">
+            <img id="obSelectedFlag" src="https://flagcdn.com/w40/ug.png" alt="UG">
+            <span id="obSelectedCode">+256</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="flag-dropdown" id="obFlagDropdown">
+            <input type="text" id="obFlagSearch" placeholder="Search...">
+            <div class="flag-list" id="obFlagList"></div>
+          </div>
+          <input type="tel" id="ob-phone" placeholder="Phone Number *">
+        </div>
+        <button class="btn-primary" onclick="nextStep()">Next <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="step" id="step2">
+        <h3>Step 2: Your Project</h3>
+        <select id="ob-service"><option value="">Select a Service *</option><option>Web Development</option><option>Graphic Design</option><option>ICT Support</option><option>Branding Package</option><option>Social Media Management</option><option>Other</option></select>
+        <select id="ob-budget"><option value="">Estimated Budget *</option><option>Under $50</option><option>$50 – $100</option><option>$100 – $300</option><option>$300+</option><option>Let's discuss</option></select>
+        <input type="text" id="ob-deadline" placeholder="Expected Deadline (e.g. 2 weeks)">
+        <textarea id="ob-desc" placeholder="Describe your project in detail..."></textarea>
+        <div class="step-btns">
+          <button class="btn-outline" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
+          <button class="btn-primary" onclick="nextStep()">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+      <div class="step" id="step3">
+        <h3>Step 3: Almost Done!</h3>
+        <select id="ob-heard"><option value="">How did you hear about us? *</option><option>Google Search</option><option>Facebook</option><option>Instagram</option><option>WhatsApp</option><option>Friend / Referral</option><option>LinkedIn</option><option>Twitter/X</option><option>Walk-in / Physically</option><option>Other</option></select>
+        <select id="ob-contact-pref"><option value="">Preferred Contact Method *</option><option>WhatsApp</option><option>Phone Call</option><option>Email</option></select>
+        <textarea id="ob-extra" placeholder="Any other info or questions?"></textarea>
+        <div class="step-btns">
+          <button class="btn-outline" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
+          <button class="btn-primary btn-submit" onclick="submitOnboarding()"><i class="fab fa-whatsapp"></i> Submit via WhatsApp</button>
+        </div>
+      </div>
+    </div>
+    <div class="step-indicator">
+      <div class="step-dot active" id="dot1"></div>
+      <div class="step-dot" id="dot2"></div>
+      <div class="step-dot" id="dot3"></div>
+    </div>
+  </div>
+</div>
+
+<section class="contact-section" style="padding-top:60px;">
+  <div class="footer-bottom">
+    <p>© 2026 <strong>KODE.BWM</strong>. All rights reserved. | Designed with ❤️ in Uganda</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="gallery.html">Gallery</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.services-full-grid { display: flex; flex-direction: column; gap: 32px; }
+
+.service-full-card {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 30px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  transition: var(--transition);
+  align-items: start;
+}
+
+.service-full-card:hover { border-color: rgba(56,189,248,0.35); transform: translateX(6px); box-shadow: var(--glow); }
+
+.sfc-icon {
+  width: 64px; height: 64px;
+  border-radius: 16px;
+  background: rgba(56,189,248,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+.sfc-icon.graphic { background: rgba(129,140,248,0.1); color: var(--accent2); }
+.sfc-icon.ict { background: rgba(52,211,153,0.1); color: var(--accent3); }
+.sfc-icon.social { background: rgba(251,146,60,0.1); color: #fb923c; }
+
+.sfc-body h3 { font-size: 1.4rem; margin-bottom: 10px; }
+.sfc-body p { color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+
+.sfc-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px; }
+.sfc-list li { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; color: var(--text); }
+.sfc-list li i { color: var(--accent3); font-size: 0.75rem; }
+
+@media (max-width: 600px) {
+  .service-full-card { grid-template-columns: 1fr; }
+  .sfc-list { grid-template-columns: 1fr; }
+}
+</style>
+
+<script src="main.js"></script>
+</body>
+</html>

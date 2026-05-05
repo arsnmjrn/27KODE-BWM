@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — KODE.BWM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor-glow" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<header class="header" id="header">
+  <div class="logo">
+    <div class="logo-icon">K</div>
+    <div><h2>KODE<span>.BWM</span></h2><small>Web & Graphic Solutions</small></div>
+  </div>
+  <nav class="nav" id="nav">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="services.html"><i class="fas fa-laptop-code"></i> Services</a>
+    <a href="gallery.html"><i class="fas fa-image"></i> Gallery</a>
+    <a href="pricing.html"><i class="fas fa-coins"></i> Pricing</a>
+    <a href="index.html#contact"><i class="fas fa-phone"></i> Contact</a>
+    <a href="portfolio.html"><i class="fas fa-folder"></i> Portfolio</a>
+  </nav>
+  <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
+</header>
+
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <i class="fas fa-chevron-right"></i>
+    <span>Pricing</span>
+  </div>
+  <h1>Simple, <span class="accent">Transparent</span> Pricing</h1>
+  <p>No hidden fees. No surprises. Just great value for excellent work.</p>
+</div>
+
+<div class="page-content">
+
+  <!-- TABS -->
+  <div class="pricing-tabs">
+    <button class="ptab active" onclick="showTab('web')">Web Development</button>
+    <button class="ptab" onclick="showTab('design')">Graphic Design</button>
+    <button class="ptab" onclick="showTab('ict')">ICT Support</button>
+  </div>
+
+  <!-- WEB PRICING -->
+  <div class="pricing-group" id="tab-web">
+    <div class="pricing-cards">
+      <div class="p-card">
+        <div class="p-badge">Starter</div>
+        <div class="p-price">$<span class="counter" data-target="50">0</span><span class="p-plus">+</span></div>
+        <p class="p-desc">Perfect for small businesses getting started online</p>
+        <ul class="p-features">
+          <li><i class="fas fa-check"></i> 1–3 pages</li>
+          <li><i class="fas fa-check"></i> Mobile responsive</li>
+          <li><i class="fas fa-check"></i> Simple clean design</li>
+          <li><i class="fas fa-check"></i> Contact info section</li>
+          <li><i class="fas fa-check"></i> 1 revision round</li>
+          <li class="disabled"><i class="fas fa-times"></i> Contact form</li>
+          <li class="disabled"><i class="fas fa-times"></i> SEO optimization</li>
+        </ul>
+        <button class="btn-primary" onclick="openQuote('Web Basic — $50+')">Get Quote <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="p-card featured-card">
+        <div class="popular-tag">⭐ Most Popular</div>
+        <div class="p-badge accent-badge">Standard</div>
+        <div class="p-price accent-price">$<span class="counter" data-target="100">0</span><span class="p-plus">+</span></div>
+        <p class="p-desc">Best for growing businesses and organizations</p>
+        <ul class="p-features">
+          <li><i class="fas fa-check"></i> 4–7 pages</li>
+          <li><i class="fas fa-check"></i> Modern design</li>
+          <li><i class="fas fa-check"></i> Contact form</li>
+          <li><i class="fas fa-check"></i> Google Maps integration</li>
+          <li><i class="fas fa-check"></i> Social media links</li>
+          <li><i class="fas fa-check"></i> 3 revision rounds</li>
+          <li class="disabled"><i class="fas fa-times"></i> Full SEO package</li>
+        </ul>
+        <button class="btn-primary" onclick="openQuote('Web Standard — $100+')">Get Quote <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="p-card">
+        <div class="p-badge">Premium</div>
+        <div class="p-price">$<span class="counter" data-target="200">0</span><span class="p-plus">+</span></div>
+        <p class="p-desc">Full-featured websites for serious businesses</p>
+        <ul class="p-features">
+          <li><i class="fas fa-check"></i> 8+ pages</li>
+          <li><i class="fas fa-check"></i> Custom design & animations</li>
+          <li><i class="fas fa-check"></i> Full SEO optimization</li>
+          <li><i class="fas fa-check"></i> Speed optimization</li>
+          <li><i class="fas fa-check"></i> Admin dashboard</li>
+          <li><i class="fas fa-check"></i> Unlimited revisions</li>
+          <li><i class="fas fa-check"></i> 3 months support</li>
+        </ul>
+        <button class="btn-primary" onclick="openQuote('Web Premium — $200+')">Get Quote <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIGN PRICING -->
+  <div class="pricing-group" id="tab-design" style="display:none">
+    <div class="pricing-cards">
+      <div class="p-card">
+        <div class="p-badge">Logo Only</div>
+        <div class="p-price">$<span>20</span><span class="p-plus">+</span></div>
+        <p class="p-desc">Simple, clean logo for your brand</p>
+        <ul class="p-features">
+          <li><i class="fas fa-check"></i> 3 logo concepts</li>
+          <li><i class="fas fa-check"></i> PNG & SVG files</li>
+          <li><i class="fas fa-check"></i> 2 revisions</li>
+          <li class="disabled"><i class="fas fa-times"></i> Brand guide</li>
+          <li class="disabled"><i class="fas fa-times"></i> Color palette</li>
+        </ul>
+        <button class="btn-primary" onclick="openQuote('Logo Design — $20+')">Get Quote <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="p-card featured-card">
+        <div class="popular-tag">⭐ Most Popular</div>
+        <div class="p-badge accent-badge">Brand Kit</div>
+        <div class="p-price accent-price">$<span>60</span><span class="p-plus">+</span></div>
+        <p class="p-desc">Complete visual identity package</p>
+        <ul class="p-features">
+          <li><i class="fas fa-check"></i> Logo + variations</li>
+          <li><i class="fas fa-check"></i> Color palette</li>
+          <li><i class="fas fa-check"></i> Font selection</li>
+          <li><i class="fas fa-check"></i> Business card design</li>
+          <li><i class="fas fa-check"></i> Letterhead</li>
+          <li><i class="fas fa-check"></i> Brand style guide PDF</li>
+        </ul>
+        <button class="btn-primary" onclick="openQuote('Brand Kit — $60+')">Get Quote <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="p-card">
+        <div class="p-badge">Posters & Print</div>
+        <div class="p-price">$<span>10</span><span class="p-plus">+</span></div>
+        <p class="p-desc">Eye-catching posters & print materials</p>
+        <ul class="p-features">
+          <li><i class="fas fa-check"></i> A4 / A3 designs</li>
+          <li><i class="fas fa-check"></i> Print-ready PDF</li>
+          <li><i class="fas fa-check"></i> Digital version</li>
+          <li><i class="fas fa-check"></i> 2 revisions</li>
+          <li><i class="fas fa-check"></i> Fast 24hr delivery</li>
+        </ul>
+        <button class="btn-primary" onclick="openQuote('Poster Design — $10+')">Get Quote <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ICT PRICING -->
+  <div class="pricing-group" id="tab-ict" style="display:none">
+    <div class="pricing-cards">
+      <div class="p-card">
+        <div class="p-badge">Basic Repair</div>
+        <div class="p-price">$<span>15</span><span class="p-plus">+</span></div>
+        <p class="p-desc">Standard computer diagnosis and repair</p>
+        <ul class="p-features">
+          <li><i class="fas fa-check"></i> Hardware diagnosis</li>
+          <li><i class="fas fa-check"></i> Software issues</li>
+          <li><i class="fas fa-check"></i> Virus removal</li>
+          <li><i class="fas fa-check"></i> System cleanup</li>
+          <li class="disabled"><i class="fas fa-times"></i> Parts replacement</li>
+        </ul>
+        <button class="btn-primary" onclick="openQuote('Basic ICT Repair — $15+')">Get Quote <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="p-card featured-card">
+        <div class="popular-tag">⭐ Most Popular</div>
+        <div class="p-badge accent-badge">Office Setup</div>
+        <div class="p-price accent-price">$<span>80</span><span class="p-plus">+</span></div>
+        <p class="p-desc">Complete office ICT setup & configuration</p>
+        <ul class="p-features">
+          <li><i class="fas fa-check"></i> Network setup</li>
+          <li><i class="fas fa-check"></i> All software installed</li>
+          <li><i class="fas fa-check"></i> Printer config</li>
+          <li><i class="fas fa-check"></i> Data migration</li>
+          <li><i class="fas fa-check"></i> Staff training</li>
+          <li><i class="fas fa-check"></i> 30 days free support</li>
+        </ul>
+        <button class="btn-primary" onclick="openQuote('Office ICT Setup — $80+')">Get Quote <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="p-card">
+        <div class="p-badge">Monthly Support</div>
+        <div class="p-price">$<span>30</span><span class="p-plus">/mo</span></div>
+        <p class="p-desc">Ongoing IT support for your business</p>
+        <ul class="p-features">
+          <li><i class="fas fa-check"></i> Priority support</li>
+          <li><i class="fas fa-check"></i> Remote assistance</li>
+          <li><i class="fas fa-check"></i> Software updates</li>
+          <li><i class="fas fa-check"></i> Security monitoring</li>
+          <li><i class="fas fa-check"></i> Unlimited tickets</li>
+        </ul>
+        <button class="btn-primary" onclick="openQuote('Monthly ICT Support — $30/mo')">Get Quote <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing-note">
+    <i class="fas fa-info-circle"></i>
+    All prices are starting rates. Final pricing depends on project complexity. <a href="https://wa.me/256704125517" target="_blank">Contact us</a> for a free custom quote.
+  </div>
+
+</div>
+
+<!-- Modals & Floats -->
+<div class="float-group">
+  <button class="float-btn get-started-float" onclick="openOnboarding()" title="Get Started">
+    <i class="fas fa-rocket"></i>
+    <span class="float-label">Get Started</span>
+  </button>
+  <a href="https://wa.me/256704125517" class="float-btn whatsapp-float" target="_blank" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="float-label">WhatsApp</span>
+  </a>
+</div>
+
+<div class="modal-overlay" id="onboardingModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeOnboarding()"><i class="fas fa-times"></i></button>
+    <div class="modal-header">
+      <div class="modal-logo">K</div>
+      <h2>Start Your Project</h2>
+      <p>Fill in your details and we'll get back to you within 24 hours</p>
+    </div>
+    <div class="modal-steps">
+      <div class="step active" id="step1">
+        <h3>Step 1: Personal Info</h3>
+        <input type="text" id="ob-name" placeholder="Your Full Name *">
+        <input type="text" id="ob-company" placeholder="Company / Organization Name">
+        <input type="email" id="ob-email" placeholder="Email Address *">
+        <div class="phone-group">
+          <div class="flag-selector small" id="obFlagSelector"><img id="obSelectedFlag" src="https://flagcdn.com/w40/ug.png" alt="UG"><span id="obSelectedCode">+256</span><i class="fas fa-chevron-down"></i></div>
+          <div class="flag-dropdown" id="obFlagDropdown"><input type="text" id="obFlagSearch" placeholder="Search..."><div class="flag-list" id="obFlagList"></div></div>
+          <input type="tel" id="ob-phone" placeholder="Phone Number *">
+        </div>
+        <button class="btn-primary" onclick="nextStep()">Next <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="step" id="step2">
+        <h3>Step 2: Your Project</h3>
+        <select id="ob-service"><option value="">Select a Service *</option><option>Web Development</option><option>Graphic Design</option><option>ICT Support</option><option>Branding Package</option><option>Other</option></select>
+        <select id="ob-budget"><option value="">Estimated Budget *</option><option>Under $50</option><option>$50 – $100</option><option>$100 – $300</option><option>$300+</option><option>Let's discuss</option></select>
+        <input type="text" id="ob-deadline" placeholder="Expected Deadline">
+        <textarea id="ob-desc" placeholder="Describe your project..."></textarea>
+        <div class="step-btns"><button class="btn-outline" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button><button class="btn-primary" onclick="nextStep()">Next <i class="fas fa-arrow-right"></i></button></div>
+      </div>
+      <div class="step" id="step3">
+        <h3>Step 3: Almost Done!</h3>
+        <select id="ob-heard"><option value="">How did you hear about us? *</option><option>Google Search</option><option>Facebook</option><option>Instagram</option><option>WhatsApp</option><option>Friend / Referral</option><option>Other</option></select>
+        <select id="ob-contact-pref"><option value="">Preferred Contact Method *</option><option>WhatsApp</option><option>Phone Call</option><option>Email</option></select>
+        <textarea id="ob-extra" placeholder="Any other info?"></textarea>
+        <div class="step-btns"><button class="btn-outline" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button><button class="btn-primary btn-submit" onclick="submitOnboarding()"><i class="fab fa-whatsapp"></i> Submit via WhatsApp</button></div>
+      </div>
+    </div>
+    <div class="step-indicator"><div class="step-dot active" id="dot1"></div><div class="step-dot" id="dot2"></div><div class="step-dot" id="dot3"></div></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="quoteModal">
+  <div class="modal-box small-modal">
+    <button class="modal-close" onclick="closeQuote()"><i class="fas fa-times"></i></button>
+    <div class="modal-header">
+      <div class="modal-logo">💬</div>
+      <h2>Request a Quote</h2>
+      <p id="quotePackageLabel">We'll prepare a custom quote for you</p>
+    </div>
+    <input type="text" id="q-name" placeholder="Your Full Name *">
+    <div class="phone-group">
+      <div class="flag-selector small" id="quoteFlagSelector"><img id="quoteSelectedFlag" src="https://flagcdn.com/w40/ug.png" alt="UG"><span id="quoteSelectedCode">+256</span><i class="fas fa-chevron-down"></i></div>
+      <div class="flag-dropdown" id="quoteFlagDropdown"><input type="text" id="quoteFlagSearch" placeholder="Search..."><div class="flag-list" id="quoteFlagList"></div></div>
+      <input type="tel" id="q-phone" placeholder="Phone Number *">
+    </div>
+    <textarea id="q-message" placeholder="Tell us more about what you need..."></textarea>
+    <button class="btn-primary" onclick="sendQuoteWhatsApp()"><i class="fab fa-whatsapp"></i> Send to WhatsApp</button>
+  </div>
+</div>
+
+<section class="contact-section" style="padding-top:60px;">
+  <div class="footer-bottom">
+    <p>© 2026 <strong>KODE.BWM</strong>. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="services.html">Services</a><a href="pricing.html">Pricing</a><a href="portfolio.html">Portfolio</a><a href="gallery.html">Gallery</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.pricing-tabs { display: flex; gap: 10px; justify-content: center; margin-bottom: 48px; flex-wrap: wrap; }
+.ptab { background: var(--card); border: 1px solid var(--border); color: var(--muted); padding: 12px 28px; border-radius: 50px; cursor: pointer; font-family: var(--font-body); font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
+.ptab.active { background: linear-gradient(135deg, var(--accent), #0ea5e9); color: var(--bg); border-color: transparent; font-weight: 700; }
+.ptab:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+
+.pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1100px; margin: 0 auto; }
+
+.p-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px 28px; position: relative; transition: var(--transition); }
+.p-card:hover { transform: translateY(-8px); border-color: rgba(56,189,248,0.3); box-shadow: var(--glow); }
+.featured-card { border-color: rgba(56,189,248,0.5); background: linear-gradient(135deg, var(--card), rgba(56,189,248,0.05)); }
+
+.popular-tag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--accent), var(--accent2)); color: var(--bg); font-size: 0.7rem; font-weight: 700; padding: 4px 16px; border-radius: 50px; white-space: nowrap; }
+
+.p-badge { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.accent-badge { color: var(--accent); }
+
+.p-price { font-family: var(--font-head); font-size: 3rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+.accent-price { color: var(--accent); text-shadow: 0 0 20px rgba(56,189,248,0.4); }
+.p-plus { font-size: 1.5rem; color: var(--muted); }
+
+.p-desc { color: var(--muted); font-size: 0.85rem; margin-bottom: 24px; line-height: 1.5; }
+
+.p-features { list-style: none; padding: 0; margin-bottom: 28px; display: flex; flex-direction: column; gap: 10px; }
+.p-features li { display: flex; align-items: center; gap: 10px; font-size: 0.88rem; }
+.p-features li i { width: 18px; color: var(--accent3); }
+.p-features li.disabled { opacity: 0.4; }
+.p-features li.disabled i { color: var(--muted); }
+
+.pricing-note { text-align: center; margin-top: 40px; color: var(--muted); font-size: 0.85rem; padding: 16px; background: rgba(56,189,248,0.05); border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.pricing-note i { color: var(--accent); margin-right: 6px; }
+.pricing-note a { color: var(--accent); }
+</style>
+
+<script src="main.js"></script>
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.pricing-group').forEach(g => g.style.display = 'none');
+  document.getElementById('tab-' + tab).style.display = 'block';
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

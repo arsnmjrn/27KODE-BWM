@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KODE.BWM | ICT & Design Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor-glow" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="logo">
+    <div class="logo-icon">
+      K
+    </div>
+    <div>
+      <h2>KODE<span>.BWM</span></h2>
+      <small>Web & Graphic Solutions</small>
+    </div>
+  </div>
+
+  <nav class="nav" id="nav">
+    <a href="#home"><i class="fas fa-home"></i> Home</a>
+    <a href="#about"><i class="fas fa-user"></i> About</a>
+    <a href="services.html"><i class="fas fa-laptop-code"></i> Services</a>
+    <a href="gallery.html"><i class="fas fa-image"></i> Gallery</a>
+    <a href="pricing.html"><i class="fas fa-coins"></i> Pricing</a>
+    <a href="#contact"><i class="fas fa-phone"></i> Contact</a>
+    <a href="#testimonials"><i class="fas fa-star"></i> Reviews</a>
+    <a href="portfolio.html"><i class="fas fa-folder"></i> Portfolio</a>
+  </nav>
+
+  <div class="menu-toggle" id="menu-toggle">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg">
+    <div class="grid-lines"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="badge-dot"></span> Available for Projects</div>
+    <h1>Your Trusted <span class="glow-text">ICT & Design</span> Partner</h1>
+    <p>We build stunning websites, craft powerful brands, and deliver reliable ICT support — all under one roof in Uganda.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="openOnboarding()"><i class="fas fa-rocket"></i> Get Started</button>
+      <a href="portfolio.html" class="btn-outline"><i class="fas fa-eye"></i> View Work</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="counter" data-target="120">0</span>+<br><small>Projects Done</small></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="counter" data-target="80">0</span>+<br><small>Happy Clients</small></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="counter" data-target="5">0</span>+<br><small>Years Active</small></div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-section">
+  <div class="section-label">WHO WE ARE</div>
+  <h2 class="section-title">Built for <span class="accent">Impact</span></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>KODE.BWM is a premier ICT and design studio based in Masajja, Wakiso, Uganda. We specialize in transforming ideas into digital experiences that drive real business results.</p>
+      <p>From sleek websites and corporate branding to hands-on ICT support — our team combines technical mastery with creative excellence to help you stand out in the digital age.</p>
+      <div class="about-features">
+        <div class="feature-item"><i class="fas fa-check-circle"></i> Certified professionals</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> Fast turnaround times</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> Affordable pricing</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> Full after-support</div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-card-stack">
+        <div class="acard ac1"><i class="fas fa-code"></i><span>Web Dev</span></div>
+        <div class="acard ac2"><i class="fas fa-palette"></i><span>Design</span></div>
+        <div class="acard ac3"><i class="fas fa-server"></i><span>ICT Support</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES PREVIEW -->
+<section id="services" class="services-section">
+  <div class="section-label">WHAT WE DO</div>
+  <h2 class="section-title">Core <span class="accent">Services</span></h2>
+  <div class="services-grid">
+    <div class="service-card" onclick="window.location='services.html'">
+      <div class="service-icon"><i class="fas fa-globe"></i></div>
+      <h3>Web Development</h3>
+      <p>Modern, responsive websites for businesses, schools, churches and NGOs. Built to convert visitors into clients.</p>
+      <span class="service-link">Explore <i class="fas fa-arrow-right"></i></span>
+    </div>
+    <div class="service-card featured" onclick="window.location='services.html'">
+      <div class="featured-badge">Most Popular</div>
+      <div class="service-icon"><i class="fas fa-palette"></i></div>
+      <h3>Graphic Design</h3>
+      <p>Logos, posters, branding kits, flyers and social media visuals. We make your brand impossible to ignore.</p>
+      <span class="service-link">Explore <i class="fas fa-arrow-right"></i></span>
+    </div>
+    <div class="service-card" onclick="window.location='services.html'">
+      <div class="service-icon"><i class="fas fa-tools"></i></div>
+      <h3>ICT Support</h3>
+      <p>System setup, repair, troubleshooting, networking and software installations for homes and offices.</p>
+      <span class="service-link">Explore <i class="fas fa-arrow-right"></i></span>
+    </div>
+  </div>
+  <div class="center-btn">
+    <a href="services.html" class="btn-primary"><i class="fas fa-th-large"></i> View All Services</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS - FLOATING -->
+<section id="testimonials" class="testimonials-section">
+  <div class="section-label">CLIENT VOICES</div>
+  <h2 class="section-title">What People <span class="accent">Say</span></h2>
+
+  <div class="testimonial-stage">
+    <div class="testimonial-stream" id="testimonialStream">
+      <!-- JS generated -->
+    </div>
+    <div class="client-list-container">
+      <div class="client-list" id="clientList"><!-- JS generated --></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="section-label">OUR EDGE</div>
+  <h2 class="section-title">Why <span class="accent">Choose Us</span></h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <h3>Fast Delivery</h3>
+      <p>We respect your deadlines. Our streamlined workflow ensures every project is delivered on time without cutting corners.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎯</div>
+      <h3>Premium Quality</h3>
+      <p>Every pixel matters. Clean code, modern design, and meticulous attention to detail — we don't do average.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <h3>Client First</h3>
+      <p>We listen before we build. Your goals drive every decision, and we stay by your side long after delivery.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💡</div>
+      <h3>Innovation</h3>
+      <p>We keep up with the latest tech trends to bring you modern, future-proof solutions that scale with your growth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-label">REACH US</div>
+  <h2 class="section-title">Get In <span class="accent">Touch</span></h2>
+
+  <div class="contact-layout">
+    <div class="contact-info-block">
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <strong>Email</strong>
+          <a href="mailto:kode.bwm1617@gmail.com">kode.bwm1617@gmail.com</a>
+          <a href="mailto:info@kodebwm.com">info@kodebwm.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+        <div>
+          <strong>Phone</strong>
+          <a href="tel:+256792096974">+256 792 096974</a>
+          <a href="tel:+256704125517">+256 704 125517</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <strong>Address</strong>
+          <span>Plot 17, Block 16, Masajja<br>Wakiso, Uganda</span>
+        </div>
+      </div>
+
+      <!-- CONTACT FORM -->
+      <div class="contact-form-inline">
+        <h3>Send a Message</h3>
+        <div class="form-group">
+          <input type="text" id="cf-name" placeholder="Your Full Name">
+        </div>
+        <div class="form-group phone-group">
+          <div class="flag-selector" id="flagSelector">
+            <img id="selectedFlag" src="https://flagcdn.com/w40/ug.png" alt="UG">
+            <span id="selectedCode">+256</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="flag-dropdown" id="flagDropdown">
+            <input type="text" id="flagSearch" placeholder="Search country...">
+            <div class="flag-list" id="flagList"></div>
+          </div>
+          <input type="tel" id="cf-phone" placeholder="Phone number">
+        </div>
+        <div class="form-group">
+          <textarea id="cf-message" placeholder="Tell us about your project..."></textarea>
+        </div>
+        <button class="btn-primary" onclick="sendContactWhatsApp()"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <div class="social-block">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="https://www.facebook.com/kodebwm" target="_blank"><i class="fab fa-facebook-f"></i><span>Facebook</span></a>
+          <a href="https://www.instagram.com/kode.bwm" target="_blank"><i class="fab fa-instagram"></i><span>Instagram</span></a>
+          <a href="https://www.twitter.com/@Toptown869" target="_blank"><i class="fab fa-twitter"></i><span>Twitter/X</span></a>
+          <a href="https://www.linkedin.com/company/kodebwm" target="_blank"><i class="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
+        </div>
+      </div>
+
+      <!-- GOOGLE MAP -->
+      <div class="map-block">
+        <h3><i class="fas fa-map-marked-alt"></i> Find Us</h3>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.756!2d32.612!3d0.286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMasajja%2C%20Wakiso%2C%20Uganda!5e0!3m2!1sen!2sug!4v1620000000000!5m2!1sen!2sug"
+            width="100%"
+            height="250"
+            style="border:0;border-radius:12px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <a href="https://maps.google.com/?q=Masajja+Wakiso+Uganda" target="_blank" class="directions-btn">
+          <i class="fas fa-directions"></i> Get Directions
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 <strong>KODE.BWM</strong>. All rights reserved. | Designed with ❤️ in Uganda</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="gallery.html">Gallery</a>
+    </div>
+  </div>
+</section>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-group">
+  <button class="float-btn get-started-float" onclick="openOnboarding()" title="Get Started">
+    <i class="fas fa-rocket"></i>
+    <span class="float-label">Get Started</span>
+  </button>
+  <a href="https://wa.me/256704125517" class="float-btn whatsapp-float" target="_blank" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="float-label">WhatsApp</span>
+  </a>
+</div>
+
+<!-- ONBOARDING MODAL -->
+<div class="modal-overlay" id="onboardingModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeOnboarding()"><i class="fas fa-times"></i></button>
+    <div class="modal-header">
+      <div class="modal-logo">K</div>
+      <h2>Start Your Project</h2>
+      <p>Fill in your details and we'll get back to you within 24 hours</p>
+    </div>
+
+    <div class="modal-steps">
+      <div class="step active" id="step1">
+        <h3>Step 1: Personal Info</h3>
+        <input type="text" id="ob-name" placeholder="Your Full Name *">
+        <input type="text" id="ob-company" placeholder="Company / Organization Name">
+        <input type="email" id="ob-email" placeholder="Email Address *">
+        <div class="phone-group">
+          <div class="flag-selector small" id="obFlagSelector">
+            <img id="obSelectedFlag" src="https://flagcdn.com/w40/ug.png" alt="UG">
+            <span id="obSelectedCode">+256</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="flag-dropdown" id="obFlagDropdown">
+            <input type="text" id="obFlagSearch" placeholder="Search...">
+            <div class="flag-list" id="obFlagList"></div>
+          </div>
+          <input type="tel" id="ob-phone" placeholder="Phone Number *">
+        </div>
+        <button class="btn-primary" onclick="nextStep()">Next <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+      <div class="step" id="step2">
+        <h3>Step 2: Your Project</h3>
+        <select id="ob-service">
+          <option value="">Select a Service *</option>
+          <option>Web Development</option>
+          <option>Graphic Design</option>
+          <option>ICT Support</option>
+          <option>Branding Package</option>
+          <option>Social Media Management</option>
+          <option>Other</option>
+        </select>
+        <select id="ob-budget">
+          <option value="">Estimated Budget *</option>
+          <option>Under $50</option>
+          <option>$50 – $100</option>
+          <option>$100 – $300</option>
+          <option>$300+</option>
+          <option>Let's discuss</option>
+        </select>
+        <input type="text" id="ob-deadline" placeholder="Expected Deadline (e.g. 2 weeks)">
+        <textarea id="ob-desc" placeholder="Describe your project in detail..."></textarea>
+        <div class="step-btns">
+          <button class="btn-outline" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
+          <button class="btn-primary" onclick="nextStep()">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <div class="step" id="step3">
+        <h3>Step 3: Almost Done!</h3>
+        <select id="ob-heard">
+          <option value="">How did you hear about us? *</option>
+          <option>Google Search</option>
+          <option>Facebook</option>
+          <option>Instagram</option>
+          <option>WhatsApp</option>
+          <option>Friend / Referral</option>
+          <option>LinkedIn</option>
+          <option>Twitter/X</option>
+          <option>Walk-in / Physically</option>
+          <option>Other</option>
+        </select>
+        <select id="ob-contact-pref">
+          <option value="">Preferred Contact Method *</option>
+          <option>WhatsApp</option>
+          <option>Phone Call</option>
+          <option>Email</option>
+        </select>
+        <textarea id="ob-extra" placeholder="Any other info or questions?"></textarea>
+        <div class="step-btns">
+          <button class="btn-outline" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
+          <button class="btn-primary btn-submit" onclick="submitOnboarding()"><i class="fab fa-whatsapp"></i> Submit via WhatsApp</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-indicator">
+      <div class="step-dot active" id="dot1"></div>
+      <div class="step-dot" id="dot2"></div>
+      <div class="step-dot" id="dot3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE POPUP (from pricing) -->
+<div class="modal-overlay" id="quoteModal">
+  <div class="modal-box small-modal">
+    <button class="modal-close" onclick="closeQuote()"><i class="fas fa-times"></i></button>
+    <div class="modal-header">
+      <div class="modal-logo">💬</div>
+      <h2>Request a Quote</h2>
+      <p id="quotePackageLabel">We'll prepare a custom quote for you</p>
+    </div>
+    <input type="text" id="q-name" placeholder="Your Full Name *">
+    <div class="phone-group">
+      <div class="flag-selector small" id="quoteFlagSelector">
+        <img id="quoteSelectedFlag" src="https://flagcdn.com/w40/ug.png" alt="UG">
+        <span id="quoteSelectedCode">+256</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="flag-dropdown" id="quoteFlagDropdown">
+        <input type="text" id="quoteFlagSearch" placeholder="Search...">
+        <div class="flag-list" id="quoteFlagList"></div>
+      </div>
+      <input type="tel" id="q-phone" placeholder="Phone Number *">
+    </div>
+    <textarea id="q-message" placeholder="Tell us more about what you need..."></textarea>
+    <button class="btn-primary" onclick="sendQuoteWhatsApp()"><i class="fab fa-whatsapp"></i> Send to WhatsApp</button>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

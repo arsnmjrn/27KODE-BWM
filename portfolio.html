@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — KODE.BWM</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+
+
+<style>
+  
+.filter-tabs { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+.ftab { background: var(--card); border: 1px solid var(--border); color: var(--muted); padding: 10px 24px; border-radius: 50px; cursor: pointer; font-family: var(--font-body); font-size: 0.875rem; transition: var(--transition); }
+.ftab.active { background: linear-gradient(135deg, var(--accent), #0ea5e9); color: var(--bg); border-color: transparent; font-weight: 700; }
+.ftab:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+
+.portfolio-masonry { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 60px; }
+
+.port-item { border-radius: var(--radius); overflow: hidden; transition: var(--transition); }
+.port-item.hidden { display: none; }
+
+.port-img-wrap {
+  position: relative;
+  height: 220px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.port-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.port-item:hover .port-img-wrap img { transform: scale(1.08); }
+
+.port-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8,13,26,0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transition: var(--transition);
+  backdrop-filter: blur(4px);
+  padding: 20px;
+  text-align: center;
+}
+
+.port-item:hover .port-overlay { opacity: 1; }
+
+.port-overlay h4 { font-size: 1.1rem; color: white; }
+.port-overlay span { font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+.port-overlay button { margin-top: 10px; background: linear-gradient(135deg, var(--accent), #0ea5e9); color: var(--bg); border: none; padding: 10px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+
+.cta-block { text-align: center; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 60px 40px; margin-top: 40px; }
+.cta-block h2 { margin-bottom: 10px; }
+.cta-block p { color: var(--muted); }
+</style>
+
+</head>
+
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor-glow" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="logo">
+      <div class="logo-icon">K</div>
+      <div>
+        <h2>KODE<span>.BWM</span></h2>
+        <small>Web & Graphic Solutions</small>
+      </div>
+    </div>
+
+    <nav class="nav" id="nav">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="services.html"><i class="fas fa-laptop-code"></i> Services</a>
+      <a href="gallery.html"><i class="fas fa-image"></i> Gallery</a>
+      <a href="pricing.html"><i class="fas fa-coins"></i> Pricing</a>
+      <a href="index.html#contact"><i class="fas fa-phone"></i> Contact</a>
+      <a href="#"><i class="fas fa-folder"></i> Portfolio</a>
+    </nav>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="page-hero">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Portfolio</span>
+    </div>
+
+    <h1>Our <span class="accent">Portfolio</span></h1>
+    <p>A showcase of our best work across web, design & ICT</p>
+  </div>
+
+  <!-- Main Content -->
+  <div class="page-content">
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <button class="ftab active" data-filter="all">All Work</button>
+      <button class="ftab" data-filter="web">Web Design</button>
+      <button class="ftab" data-filter="branding">Branding</button>
+      <button class="ftab" data-filter="graphic">Graphic Design</button>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <div class="portfolio-masonry" id="portfolioGrid">
+
+      <!-- Item 1 -->
+      <div class="port-item" data-cat="web">
+        <div class="port-img-wrap">
+          <img src="kode-image1.png" alt="Project 1">
+          <div class="port-overlay">
+            <h4>Business Website</h4>
+            <span>Web Development</span>
+            <button onclick="openOnboarding()">
+              Similar Project <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="port-item" data-cat="web">
+        <div class="port-img-wrap">
+          <img src="kode-image2.png" alt="Project 2">
+          <div class="port-overlay">
+            <h4>School Portal</h4>
+            <span>Web Development</span>
+            <button onclick="openOnboarding()">
+              Similar Project <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="port-item" data-cat="branding">
+        <div class="port-img-wrap">
+          <img src="kode-image6.png" alt="Project 3">
+          <div class="port-overlay">
+            <h4>Brand Identity</h4>
+            <span>Branding</span>
+            <button onclick="openOnboarding()">
+              Similar Project <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="port-item" data-cat="graphic">
+        <div class="port-img-wrap">
+          <img src="kode-image7.png" alt="Project 4">
+          <div class="port-overlay">
+            <h4>Event Poster</h4>
+            <span>Graphic Design</span>
+            <button onclick="openOnboarding()">
+              Similar Project <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <h2>Ready to be our next success story?</h2>
+      <p>Let's build something amazing together</p>
+
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:24px;">
+        <button class="btn-primary" onclick="openOnboarding()">
+          <i class="fas fa-rocket"></i> Start a Project
+        </button>
+
+        <a href="https://wa.me/256704125517" class="btn-outline" target="_blank">
+          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Buttons -->
+  <div class="float-group">
+    <button class="float-btn get-started-float" onclick="openOnboarding()">
+      <i class="fas fa-rocket"></i>
+      <span class="float-label">Get Started</span>
+    </button>
+
+    <a href="https://wa.me/256704125517" class="float-btn whatsapp-float" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+      <span class="float-label">WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- Onboarding Modal -->
+  <div class="modal-overlay" id="onboardingModal">
+    <div class="modal-box">
+
+      <button class="modal-close" onclick="closeOnboarding()">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="modal-header">
+        <div class="modal-logo">K</div>
+        <h2>Start Your Project</h2>
+        <p>Fill in your details and we'll respond within 24 hours</p>
+      </div>
+
+      <!-- Steps stay unchanged -->
+      <!-- Your original step code goes here exactly as is -->
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <section class="contact-section" style="padding-top:60px;">
+    <div class="footer-bottom">
+      <p>© 2026 <strong>KODE.BWM</strong>. All rights reserved.</p>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main JS -->
+  <script src="main.js"></script>
+
+  <!-- Portfolio Filter -->
+  <script>
+    document.querySelectorAll('.ftab').forEach(tab => {
+      tab.addEventListener('click', () => {
+
+        document.querySelectorAll('.ftab')
+          .forEach(t => t.classList.remove('active'));
+
+        tab.classList.add('active');
+
+        const filter = tab.dataset.filter;
+
+        document.querySelectorAll('.port-item').forEach(item => {
+          if (filter === 'all' || item.dataset.cat === filter) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
