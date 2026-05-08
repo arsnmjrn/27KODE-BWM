@@ -8,7 +8,52 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="style.css">
+
+
+<style>
+.services-full-grid { display: flex; flex-direction: column; gap: 32px; }
+
+.service-full-card {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 30px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  transition: var(--transition);
+  align-items: start;
+}
+
+.service-full-card:hover { border-color: rgba(56,189,248,0.35); transform: translateX(6px); box-shadow: var(--glow); }
+
+.sfc-icon {
+  width: 64px; height: 64px;
+  border-radius: 16px;
+  background: rgba(56,189,248,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+.sfc-icon.graphic { background: rgba(129,140,248,0.1); color: var(--accent2); }
+.sfc-icon.ict { background: rgba(52,211,153,0.1); color: var(--accent3); }
+.sfc-icon.social { background: rgba(251,146,60,0.1); color: #fb923c; }
+
+.sfc-body h3 { font-size: 1.4rem; margin-bottom: 10px; }
+.sfc-body p { color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+
+.sfc-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px; }
+.sfc-list li { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; color: var(--text); }
+.sfc-list li i { color: var(--accent3); font-size: 0.75rem; }
+
+@media (max-width: 600px) {
+  .service-full-card { grid-template-columns: 1fr; }
+  .sfc-list { grid-template-columns: 1fr; }
+}
+</style>
 </head>
+
+
 <body>
 
 <div class="cursor-glow" id="cursor"></div>
@@ -200,47 +245,6 @@
   </div>
 </section>
 
-<style>
-.services-full-grid { display: flex; flex-direction: column; gap: 32px; }
-
-.service-full-card {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 30px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 36px;
-  transition: var(--transition);
-  align-items: start;
-}
-
-.service-full-card:hover { border-color: rgba(56,189,248,0.35); transform: translateX(6px); box-shadow: var(--glow); }
-
-.sfc-icon {
-  width: 64px; height: 64px;
-  border-radius: 16px;
-  background: rgba(56,189,248,0.1);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.8rem;
-  color: var(--accent);
-}
-.sfc-icon.graphic { background: rgba(129,140,248,0.1); color: var(--accent2); }
-.sfc-icon.ict { background: rgba(52,211,153,0.1); color: var(--accent3); }
-.sfc-icon.social { background: rgba(251,146,60,0.1); color: #fb923c; }
-
-.sfc-body h3 { font-size: 1.4rem; margin-bottom: 10px; }
-.sfc-body p { color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
-
-.sfc-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px; }
-.sfc-list li { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; color: var(--text); }
-.sfc-list li i { color: var(--accent3); font-size: 0.75rem; }
-
-@media (max-width: 600px) {
-  .service-full-card { grid-template-columns: 1fr; }
-  .sfc-list { grid-template-columns: 1fr; }
-}
-</style>
 
 <script src="main.js"></script>
 </body>

@@ -304,6 +304,8 @@ p { line-height: 1.75; color: var(--muted2); }
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
+  z-index: 1001;  /* ADD THIS */
+  position: relative;  /* ADD THIS */
 }
 
 .menu-toggle span { height: 2px; background: white; border-radius: 5px; transition: 0.3s; }
@@ -329,6 +331,8 @@ p { line-height: 1.75; color: var(--muted2); }
   .nav.active { right: 0; }
   .nav a { font-size: 1.2rem; }
 }
+
+
 
 
 /* ===== HERO ===== */
@@ -1330,27 +1334,20 @@ em { font-style: normal; }
   <div class="logo-icon">
   <img src="logo-image.png" alt="KODE.BWM Logo">
 </div>
-    <div>
-      <h2>KODE<span>.BWM</span></h2>
-      <small>Web & Graphic Solutions</small>
-    </div>
+    <div><h2>KODE<span>.BWM</span></h2><small>Web & Graphic Solutions</small></div>
   </div>
-
   <nav class="nav" id="nav">
-    <a href="#home"><i class="fas fa-home"></i> Home</a>
-    <a href="#about"><i class="fas fa-user"></i> About</a>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="index.html#about"><i class="fas fa-user"></i> About</a>
     <a href="services.html"><i class="fas fa-laptop-code"></i> Services</a>
     <a href="gallery.html"><i class="fas fa-image"></i> Gallery</a>
     <a href="pricing.html"><i class="fas fa-coins"></i> Pricing</a>
-    <a href="#contact"><i class="fas fa-phone"></i> Contact</a>
-    <a href="#testimonials"><i class="fas fa-star"></i> Reviews</a>
+    <a href="index.html#contact"><i class="fas fa-phone"></i> Contact</a>
     <a href="portfolio.html"><i class="fas fa-folder"></i> Portfolio</a>
   </nav>
-
-  <div class="menu-toggle" id="menu-toggle">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></div>
 </header>
+
 
 <!-- ============================
      HERO SECTION
@@ -2304,14 +2301,14 @@ const nav = document.getElementById('nav');
 
 if (menuToggle && nav) {
   menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    nav.classList.toggle('active');
+menuToggle.classList.toggle('active');
+nav.classList.toggle('open');
     document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
   });
   document.querySelectorAll('.nav a').forEach(link => {
     link.addEventListener('click', () => {
-      nav.classList.remove('active');
-      menuToggle.classList.remove('active');
+nav.classList.remove('open');
+menuToggle.classList.remove('active');
       document.body.style.overflow = '';
     });
   });
