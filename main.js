@@ -80,33 +80,7 @@ const counterObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 counters.forEach(c => counterObserver.observe(c));
 
-/* ===== TESTIMONIALS ===== */
-const testimonials = [
-  { name: "John M.", location: "Kampala", text: "KODE.BWM built my business website perfectly. Delivered fast, at very affordable prices. Highly recommend!" },
-  { name: "Majorine K.", location: "Entebbe", text: "Very fast and professional service. My posters looked absolutely amazing. Will use again!" },
-  { name: "Sauti ya Uamsho", location: "California, USA", text: "Reliable ICT support. They fixed our server setup remotely and professionally. Outstanding team." },
-  { name: "Jane Doe", location: "Kampala", text: "KODE.BWM delivered my project on time and within budget. Communication was excellent throughout." },
-  { name: "Eli R.", location: "Kampala", text: "The best design team I've worked with! Modern, clean, and exactly what I envisioned." },
-  { name: "Pr. Jean", location: "California, USA", text: "Perfect service! They understood our church's vision and delivered a beautiful website." },
-  { name: "Dr. Amara", location: "Nairobi, Kenya", text: "Exceptional graphic design work. Our brand identity is now consistent and professional." },
-  { name: "Pastor David", location: "Mbarara", text: "They created our church website and it's beautiful. Members love it. Very affordable!" },
-  { name: "Sarah N.", location: "Jinja", text: "Quick ICT support, fixed our office network same day. Very knowledgeable and friendly." },
-];
 
-const clients = [
-  { name: "John M.", location: "Kampala" },
-  { name: "Majorine K.", location: "Entebbe" },
-  { name: "Sauti ya Uamsho", location: "California" },
-  { name: "Jane Doe", location: "Kampala" },
-  { name: "Eli R.", location: "Kampala" },
-  { name: "Pr. Jean", location: "California" },
-  { name: "Dr. Amara", location: "Nairobi" },
-  { name: "Pastor David", location: "Mbarara" },
-  { name: "Sarah N.", location: "Jinja" },
-  { name: "Michael T.", location: "Gulu" },
-  { name: "Grace A.", location: "Kampala" },
-  { name: "Emmanuel B.", location: "Wakiso" },
-];
 
 const streamEl = document.getElementById('testimonialStream');
 const clientListEl = document.getElementById('clientList');
