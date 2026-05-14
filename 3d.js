@@ -1,419 +1,3 @@
-/* ===========================
-   KODE.BWM — main.js
-   =========================== */
-
-/* ===== CUSTOM CURSOR ===== */
-const cursor = document.getElementById('cursor');
-const cursorDot = document.getElementById('cursorDot');
-
-if (cursor && cursorDot) {
-  let mouseX = 0, mouseY = 0;
-  let cursorX = 0, cursorY = 0;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursorDot.style.left = mouseX + 'px';
-    cursorDot.style.top = mouseY + 'px';
-  });
-
-  function animateCursor() {
-    cursorX += (mouseX - cursorX) * 0.12;
-    cursorY += (mouseY - cursorY) * 0.12;
-    cursor.style.left = cursorX + 'px';
-    cursor.style.top = cursorY + 'px';
-    requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-
-  document.addEventListener('mousedown', () => {
-    cursor.style.width = '60px';
-    cursor.style.height = '60px';
-  });
-  document.addEventListener('mouseup', () => {
-    cursor.style.width = '40px';
-    cursor.style.height = '40px';
-  });
-}
-
-/* ===== MOBILE MENU ===== */
-const menuToggle = document.getElementById('menu-toggle');
-const nav = document.getElementById('nav');
-
-if (menuToggle && nav) {
-  menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    nav.classList.toggle('active');
-    document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
-  });
-  document.querySelectorAll('.nav a').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('active');
-      menuToggle.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  });
-}
-
-/* ===== COUNTER ANIMATION ===== */
-const counters = document.querySelectorAll('.counter');
-const counterObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      const target = +el.getAttribute('data-target');
-      let count = 0;
-      const speed = target > 50 ? 15 : 40;
-      const update = () => {
-        if (count < target) {
-          count++;
-          el.innerText = count;
-          setTimeout(update, speed);
-        } else {
-          el.innerText = target;
-        }
-      };
-      update();
-      counterObserver.unobserve(el);
-    }
-  });
-}, { threshold: 0.5 });
-counters.forEach(c => counterObserver.observe(c));
-
-
-
-const streamEl = document.getElementById('testimonialStream');
-const clientListEl = document.getElementById('clientList');
-
-if (streamEl) {
-  let tIndex = 0;
-  const maxVisible = 3;
-
-  function addTestimonial() {
-    const t = testimonials[tIndex % testimonials.length];
-    const initials = t.name.split(' ').map(n => n[0]).join('').substring(0, 2);
-    const stars = '★★★★★';
-
-    const card = document.createElement('div');
-    card.className = 't-card';
-    card.innerHTML = `
-      <div class="t-stars">${stars}</div>
-      <p>"${t.text}"</p>
-      <div class="t-card-footer">
-        <div class="t-avatar">${initials}</div>
-        <div>
-          <div class="t-name">${t.name}</div>
-          <div class="t-loc">${t.location}</div>
-        </div>
-      </div>
-    `;
-
-    streamEl.insertBefore(card, streamEl.firstChild);
-
-    // Remove old ones
-    while (streamEl.children.length > maxVisible) {
-      streamEl.removeChild(streamEl.lastChild);
-    }
-
-    tIndex++;
-  }
-
-  addTestimonial();
-  setInterval(addTestimonial, 4000);
-}
-
-if (clientListEl) {
-  // Double the list for seamless scroll
-  const allClients = [...clients, ...clients];
-  allClients.forEach(c => {
-    const item = document.createElement('div');
-    item.className = 'client-item';
-    item.innerHTML = `
-      <div class="client-dot"></div>
-      <div>
-        <div class="client-item-name">${c.name}</div>
-        <div class="client-item-loc">${c.location}</div>
-      </div>
-    `;
-    clientListEl.appendChild(item);
-  });
-
-  // Add title above
-  const container = clientListEl.parentElement;
-  const title = document.createElement('h4');
-  title.textContent = 'OUR CLIENTS';
-  container.insertBefore(title, clientListEl);
-}
-
-/* ===== COUNTRY CODES + FLAGS ===== */
-const countries = [
-  { code: 'UG', name: 'Uganda', dial: '+256' },
-  { code: 'KE', name: 'Kenya', dial: '+254' },
-  { code: 'TZ', name: 'Tanzania', dial: '+255' },
-  { code: 'NG', name: 'Nigeria', dial: '+234' },
-  { code: 'GH', name: 'Ghana', dial: '+233' },
-  { code: 'ZA', name: 'South Africa', dial: '+27' },
-  { code: 'US', name: 'United States', dial: '+1' },
-  { code: 'GB', name: 'United Kingdom', dial: '+44' },
-  { code: 'CA', name: 'Canada', dial: '+1' },
-  { code: 'AU', name: 'Australia', dial: '+61' },
-  { code: 'IN', name: 'India', dial: '+91' },
-  { code: 'CN', name: 'China', dial: '+86' },
-  { code: 'DE', name: 'Germany', dial: '+49' },
-  { code: 'FR', name: 'France', dial: '+33' },
-  { code: 'RW', name: 'Rwanda', dial: '+250' },
-  { code: 'ET', name: 'Ethiopia', dial: '+251' },
-  { code: 'EG', name: 'Egypt', dial: '+20' },
-  { code: 'ZM', name: 'Zambia', dial: '+260' },
-  { code: 'ZW', name: 'Zimbabwe', dial: '+263' },
-  { code: 'CD', name: 'DR Congo', dial: '+243' },
-  { code: 'SS', name: 'South Sudan', dial: '+211' },
-  { code: 'SO', name: 'Somalia', dial: '+252' },
-  { code: 'AE', name: 'UAE', dial: '+971' },
-  { code: 'SA', name: 'Saudi Arabia', dial: '+966' },
-  { code: 'JP', name: 'Japan', dial: '+81' },
-  { code: 'BR', name: 'Brazil', dial: '+55' },
-  { code: 'MX', name: 'Mexico', dial: '+52' },
-  { code: 'IT', name: 'Italy', dial: '+39' },
-  { code: 'ES', name: 'Spain', dial: '+34' },
-  { code: 'NL', name: 'Netherlands', dial: '+31' },
-];
-
-function buildFlagDropdown(selectorId, dropdownId, searchId, listId, flagImgId, codeId) {
-  const selector = document.getElementById(selectorId);
-  const dropdown = document.getElementById(dropdownId);
-  const searchInput = document.getElementById(searchId);
-  const listEl = document.getElementById(listId);
-  const flagImg = document.getElementById(flagImgId);
-  const codeSpan = document.getElementById(codeId);
-
-  if (!selector || !dropdown || !listEl) return;
-
-  function renderList(filter = '') {
-    listEl.innerHTML = '';
-    countries
-      .filter(c => c.name.toLowerCase().includes(filter.toLowerCase()) || c.dial.includes(filter))
-      .forEach(c => {
-        const opt = document.createElement('div');
-        opt.className = 'flag-option';
-        opt.innerHTML = `<img src="https://flagcdn.com/w40/${c.code.toLowerCase()}.png" alt="${c.code}"><span>${c.name} (${c.dial})</span>`;
-        opt.addEventListener('click', () => {
-          flagImg.src = `https://flagcdn.com/w40/${c.code.toLowerCase()}.png`;
-          flagImg.alt = c.code;
-          codeSpan.textContent = c.dial;
-          dropdown.classList.remove('open');
-        });
-        listEl.appendChild(opt);
-      });
-  }
-
-  selector.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle('open');
-    if (dropdown.classList.contains('open')) searchInput.focus();
-  });
-
-  searchInput.addEventListener('input', () => renderList(searchInput.value));
-  searchInput.addEventListener('click', e => e.stopPropagation());
-  dropdown.addEventListener('click', e => e.stopPropagation());
-
-  document.addEventListener('click', () => dropdown.classList.remove('open'));
-
-  renderList();
-}
-
-// Build all flag dropdowns
-buildFlagDropdown('flagSelector', 'flagDropdown', 'flagSearch', 'flagList', 'selectedFlag', 'selectedCode');
-buildFlagDropdown('obFlagSelector', 'obFlagDropdown', 'obFlagSearch', 'obFlagList', 'obSelectedFlag', 'obSelectedCode');
-buildFlagDropdown('quoteFlagSelector', 'quoteFlagDropdown', 'quoteFlagSearch', 'quoteFlagList', 'quoteSelectedFlag', 'quoteSelectedCode');
-
-/* ===== CONTACT WHATSAPP ===== */
-function sendContactWhatsApp() {
-  const name = document.getElementById('cf-name')?.value?.trim();
-  const phone = document.getElementById('cf-phone')?.value?.trim();
-  const code = document.getElementById('selectedCode')?.textContent || '+256';
-  const msg = document.getElementById('cf-message')?.value?.trim();
-
-  if (!name || !phone) { alert('Please fill in your name and phone number.'); return; }
-
-  const text = `Hello KODE.BWM!
-
-Name: ${name}
-Phone: ${code} ${phone}
-Message: ${msg || 'N/A'}`;
-
-  window.open(`https://wa.me/256704125517?text=${encodeURIComponent(text)}`, '_blank');
-}
-
-/* ===== ONBOARDING MODAL ===== */
-let currentStep = 1;
-
-function openOnboarding() {
-  document.getElementById('onboardingModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  goToStep(1);
-}
-
-function closeOnboarding() {
-  document.getElementById('onboardingModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function goToStep(n) {
-  document.querySelectorAll('.modal-steps .step').forEach((s, i) => {
-    s.classList.toggle('active', i + 1 === n);
-  });
-  document.querySelectorAll('.step-dot').forEach((d, i) => {
-    d.classList.toggle('active', i + 1 === n);
-  });
-  currentStep = n;
-}
-
-function nextStep() {
-  if (currentStep < 3) goToStep(currentStep + 1);
-}
-function prevStep() {
-  if (currentStep > 1) goToStep(currentStep - 1);
-}
-
-function submitOnboarding() {
-  const name = document.getElementById('ob-name')?.value?.trim();
-  const company = document.getElementById('ob-company')?.value?.trim();
-  const email = document.getElementById('ob-email')?.value?.trim();
-  const phone = document.getElementById('ob-phone')?.value?.trim();
-  const phoneCode = document.getElementById('obSelectedCode')?.textContent || '+256';
-  const service = document.getElementById('ob-service')?.value;
-  const budget = document.getElementById('ob-budget')?.value;
-  const deadline = document.getElementById('ob-deadline')?.value?.trim();
-  const desc = document.getElementById('ob-desc')?.value?.trim();
-  const heard = document.getElementById('ob-heard')?.value;
-  const contactPref = document.getElementById('ob-contact-pref')?.value;
-  const extra = document.getElementById('ob-extra')?.value?.trim();
-
-  if (!name || !phone || !service) {
-    alert('Please fill in all required fields (Name, Phone, Service).');
-    return;
-  }
-
-  const text = `🚀 *New Project Inquiry — KODE.BWM*
-
-👤 *Personal Info*
-Name: ${name}
-Company: ${company || 'N/A'}
-Email: ${email || 'N/A'}
-Phone: ${phoneCode} ${phone}
-
-💼 *Project Details*
-Service: ${service}
-Budget: ${budget || 'N/A'}
-Deadline: ${deadline || 'N/A'}
-Description: ${desc || 'N/A'}
-
-📣 *How They Found Us*
-Source: ${heard || 'N/A'}
-Preferred Contact: ${contactPref || 'N/A'}
-Extra Notes: ${extra || 'N/A'}`;
-
-  window.open(`https://wa.me/256704125517?text=${encodeURIComponent(text)}`, '_blank');
-  closeOnboarding();
-}
-
-/* ===== QUOTE MODAL ===== */
-let selectedPackage = '';
-
-function openQuote(pkg) {
-  selectedPackage = pkg;
-  document.getElementById('quotePackageLabel').textContent = `Package: ${pkg}`;
-  document.getElementById('quoteModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeQuote() {
-  document.getElementById('quoteModal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function sendQuoteWhatsApp() {
-  const name = document.getElementById('q-name')?.value?.trim();
-  const phone = document.getElementById('q-phone')?.value?.trim();
-  const code = document.getElementById('quoteSelectedCode')?.textContent || '+256';
-  const msg = document.getElementById('q-message')?.value?.trim();
-
-  if (!name || !phone) { alert('Please fill in your name and phone number.'); return; }
-
-  const text = `💬 *Quote Request — KODE.BWM*
-
-Name: ${name}
-Phone: ${code} ${phone}
-Package: ${selectedPackage}
-Details: ${msg || 'N/A'}`;
-
-  window.open(`https://wa.me/256704125517?text=${encodeURIComponent(text)}`, '_blank');
-  closeQuote();
-}
-
-// Close modals on overlay click
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', function(e) {
-    if (e.target === this) {
-      this.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  });
-});
-
-// ESC key
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.modal-overlay.open').forEach(m => {
-      m.classList.remove('open');
-    });
-    document.body.style.overflow = '';
-  }
-});
-
-/* ===== SCROLL REVEAL ===== */
-const reveals = document.querySelectorAll('.service-card, .why-card, .acard, .contact-item');
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      entry.target.style.animationDelay = `${i * 0.1}s`;
-      entry.target.style.animation = 'fadeUp 0.6s ease forwards';
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
-
-reveals.forEach(el => {
-  el.style.opacity = '0';
-  revealObserver.observe(el);
-});
-
-// Add fadeUp keyframe via JS
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-`;
-document.head.appendChild(style);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ════════════════════════════════════════════════════════════
    KODE.BWM — 3D Tech Sphere
    Paste this <script> block into your page (before </body>)
@@ -530,6 +114,11 @@ const TECHS = [
     svg: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.66-.22.66-.48v-1.7C6.73 19.91 6.14 18 6.14 18c-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 7.4c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z" fill="white"/></svg>`
   }
 ];
+
+
+
+
+
 
 // ── SPHERE GEOMETRY ──
 function fibonacciSphere(n, radius) {
@@ -777,3 +366,66 @@ document.getElementById('gatherBtn').addEventListener('click', () => {
 // ── INIT ──
 buildNodes();
 requestAnimationFrame(animate);
+
+
+
+
+
+
+
+
+
+(function() {
+  const mapFrame = document.getElementById('laptopMapFrame');
+  if (!mapFrame) return;
+
+  // Intersection observer to load map lazily + animate
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Animate laptop lid open on scroll
+        const lid = mapFrame.closest('.lm-lid');
+        if (lid) {
+          lid.style.transition = 'transform 0.8s cubic-bezier(0.16,1,0.3,1), opacity 0.6s';
+          lid.style.transformOrigin = 'bottom center';
+          lid.style.transform = 'rotateX(-5deg)';
+          lid.style.opacity = '1';
+
+          setTimeout(() => {
+            lid.style.transform = 'rotateX(0deg)';
+          }, 100);
+        }
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const wrap = document.querySelector('.laptop-map-wrap');
+  if (wrap) observer.observe(wrap);
+
+  // Nav button clicks (non-functional but feel real)
+  document.querySelectorAll('.lm-nav-btn').forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      btn.style.background = 'rgba(56,189,248,0.2)';
+      setTimeout(() => { btn.style.background = ''; }, 200);
+    });
+  });
+
+  // Dot clicks
+  document.querySelectorAll('.lm-dot').forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      if (i === 0) { // Red = minimise effect
+        const wrap = dot.closest('.laptop-map-wrap');
+        if (wrap) {
+          wrap.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+          wrap.style.transform = 'scale(0.97)';
+          wrap.style.opacity = '0.6';
+          setTimeout(() => {
+            wrap.style.transform = 'scale(1)';
+            wrap.style.opacity = '1';
+          }, 600);
+        }
+      }
+    });
+  });
+})();

@@ -12,6 +12,710 @@
 
 <style>
 
+
+
+
+
+
+
+
+
+/* ─── LAPTOP MAP COMPONENT ─── */
+.laptop-map-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ─── LAPTOP LID (screen area) ─── */
+.lm-lid {
+  width: 100%;
+  background: linear-gradient(160deg, #0d1e35 0%, #0a1626 40%, #060f1e 100%);
+  border-radius: 18px 18px 0 0;
+  border: 2px solid rgba(56,189,248,0.22);
+  border-bottom: none;
+  padding: 12px 12px 0 12px;
+  position: relative;
+  box-shadow:
+    0 -6px 40px rgba(56,189,248,0.08),
+    inset 0 1px 0 rgba(56,189,248,0.12),
+    inset 0 0 60px rgba(56,189,248,0.03);
+}
+
+/* Corner screws */
+.lm-lid::before,
+.lm-lid::after {
+  content: '';
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(56,189,248,0.18);
+  background: rgba(56,189,248,0.06);
+  top: 8px;
+}
+.lm-lid::before { left: 10px; }
+.lm-lid::after  { right: 10px; }
+
+/* ─── BROWSER BAR ─── */
+.lm-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  background: rgba(4, 9, 18, 0.7);
+  border-radius: 8px 8px 0 0;
+  border: 1px solid rgba(56,189,248,0.1);
+  border-bottom: none;
+  position: relative;
+}
+
+.lm-dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.lm-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  cursor: default;
+  transition: opacity 0.2s;
+}
+.lm-dot:hover { opacity: 0.7; }
+.lm-dot.red    { background: #ff5f57; box-shadow: 0 0 4px rgba(255,95,87,0.5); }
+.lm-dot.yellow { background: #febc2e; box-shadow: 0 0 4px rgba(254,188,46,0.5); }
+.lm-dot.green  { background: #28c840; box-shadow: 0 0 4px rgba(40,200,64,0.5); }
+
+.lm-url-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(56,189,248,0.12);
+  border-radius: 6px;
+  padding: 5px 14px;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 11px;
+  color: #64748b;
+  letter-spacing: 0.03em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.lm-url-lock {
+  color: #28c840;
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+.lm-url-text { color: #94a3b8; }
+.lm-url-text .url-highlight { color: #38bdf8; }
+
+.lm-nav-btns {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.lm-nav-btn {
+  width: 24px; height: 24px;
+  border-radius: 5px;
+  background: rgba(56,189,248,0.06);
+  border: 1px solid rgba(56,189,248,0.12);
+  display: flex; align-items: center; justify-content: center;
+  color: #475569;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: monospace;
+}
+.lm-nav-btn:hover { border-color: rgba(56,189,248,0.35); color: #38bdf8; }
+
+/* ─── SCREEN BEZEL ─── */
+.lm-bezel {
+  background: #040c18;
+  border: 1px solid rgba(56,189,248,0.08);
+  border-top: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scanline overlay */
+.lm-bezel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(56,189,248,0.012) 2px,
+    rgba(56,189,248,0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ─── MAP CONTAINER ─── */
+.lm-map-container {
+  width: 100%;
+  height: 360px;
+  position: relative;
+}
+
+#laptopMapFrame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  filter: hue-rotate(190deg) saturate(0.7) brightness(0.85);
+  transition: filter 0.4s;
+}
+#laptopMapFrame:hover {
+  filter: hue-rotate(190deg) saturate(0.9) brightness(1);
+}
+
+/* ─── MAP OVERLAY INFO ─── */
+.lm-map-overlay {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(5, 10, 20, 0.88);
+  border: 1px solid rgba(56,189,248,0.25);
+  border-radius: 12px;
+  padding: 12px 16px;
+  backdrop-filter: blur(14px);
+  z-index: 20;
+  min-width: 190px;
+}
+
+.lm-loc-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: #38bdf8;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.lm-loc-label::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 6px #38bdf8;
+  animation: mapPulse 1.5s ease-in-out infinite;
+}
+@keyframes mapPulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.lm-loc-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.lm-loc-sub {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* ─── DIRECTIONS BTN OVERLAY ─── */
+.lm-directions-btn {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #050a14;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(56,189,248,0.35);
+  letter-spacing: 0.04em;
+}
+.lm-directions-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(56,189,248,0.5);
+  background: linear-gradient(135deg, #7dd3fc, #38bdf8);
+}
+.lm-directions-btn svg {
+  width: 13px; height: 13px;
+}
+
+/* ─── STATUS BAR ─── */
+.lm-status-bar {
+  background: rgba(4, 9, 18, 0.9);
+  border: 1px solid rgba(56,189,248,0.08);
+  border-top: 1px solid rgba(56,189,248,0.06);
+  padding: 5px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  color: #334155;
+}
+
+.lm-status-left { display: flex; align-items: center; gap: 12px; }
+.lm-status-item { display: flex; align-items: center; gap: 4px; }
+.lm-status-dot { width: 5px; height: 5px; border-radius: 50%; background: #28c840; animation: mapPulse 2s infinite; }
+
+/* ─── HINGE ─── */
+.lm-hinge {
+  width: 96%;
+  height: 10px;
+  background: linear-gradient(to bottom, #0d1e35, #07111e);
+  border-radius: 0 0 4px 4px;
+  border: 1px solid rgba(56,189,248,0.12);
+  border-top: none;
+  margin: 0 auto;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.3);
+  position: relative;
+}
+
+/* Centre hinge notch */
+.lm-hinge::after {
+  content: '';
+  position: absolute;
+  width: 60px; height: 4px;
+  background: rgba(56,189,248,0.08);
+  border-radius: 2px;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ─── BASE / KEYBOARD ─── */
+.lm-base {
+  width: 104%;
+  margin-left: -2%;
+  background: linear-gradient(to bottom, #0a1626 0%, #060f1e 100%);
+  border-radius: 0 0 20px 20px;
+  border: 1.5px solid rgba(56,189,248,0.15);
+  border-top: none;
+  padding: 14px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(56,189,248,0.04);
+  position: relative;
+}
+
+/* Trackpad */
+.lm-trackpad {
+  width: 120px; height: 28px;
+  border-radius: 6px;
+  border: 1px solid rgba(56,189,248,0.12);
+  background: rgba(56,189,248,0.03);
+  margin: 0 auto;
+}
+
+/* Keyboard rows */
+.lm-kb-row {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+}
+
+.lm-key {
+  height: 8px;
+  border-radius: 2px;
+  background: rgba(56,189,248,0.05);
+  border: 1px solid rgba(56,189,248,0.08);
+  flex: 1;
+  max-width: 22px;
+}
+.lm-key.wide { max-width: 40px; flex: 2; }
+.lm-key.space { max-width: 140px; flex: 5; }
+
+/* Glow under laptop */
+.lm-glow {
+  width: 60%;
+  height: 20px;
+  background: radial-gradient(ellipse, rgba(56,189,248,0.12) 0%, transparent 70%);
+  margin: 0 auto;
+  filter: blur(8px);
+}
+
+/* ─── CONTACT INFO BELOW LAPTOP ─── */
+.lm-contact-strip {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.lm-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  color: #64748b;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.lm-contact-item:hover { color: #38bdf8; }
+
+.lm-ci-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(56,189,248,0.06);
+  border: 1px solid rgba(56,189,248,0.14);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+.lm-contact-item:hover .lm-ci-icon {
+  background: rgba(56,189,248,0.14);
+  border-color: rgba(56,189,248,0.35);
+  box-shadow: 0 0 12px rgba(56,189,248,0.2);
+}
+
+.lm-ci-text strong { display: block; font-size: 0.78rem; color: #94a3b8; margin-bottom: 1px; }
+.lm-ci-text span   { font-size: 0.82rem; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 700px) {
+  .lm-map-container { height: 240px; }
+  .lm-base { padding: 10px 14px 14px; }
+  .lm-kb-row { display: none; }
+  .lm-trackpad { width: 80px; height: 20px; }
+  .lm-contact-strip { gap: 20px; }
+  .lm-map-overlay { padding: 8px 12px; }
+  .lm-loc-name { font-size: 0.78rem; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ─────────────── 3D SPHERE SECTION ─────────────── */
+.sphere-section {
+  padding: 100px 0;
+  background: var(--bg2, #080f1e);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sphere-section .tech-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 50%, rgba(56,189,248,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ─── SPHERE WRAPPER ─── */
+.sphere-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
+
+/* ─── THE 3D SCENE ─── */
+.scene {
+  width: 460px;
+  height: 460px;
+  perspective: 900px;
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+}
+.scene:active { cursor: grabbing; }
+
+.sphere-3d {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  position: relative;
+  transition: none;
+}
+
+/* ─── GLOW RING BEHIND SPHERE ─── */
+.sphere-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 35% 35%, rgba(56,189,248,0.18) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  margin: auto;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px; height: 420px;
+  filter: blur(20px);
+}
+
+/* ─── EQUATOR RING ─── */
+.sphere-ring {
+  position: absolute;
+  width: 420px; height: 420px;
+  border: 1px solid rgba(56,189,248,0.12);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%) rotateX(75deg);
+  pointer-events: none;
+  animation: ringPulse 4s ease-in-out infinite;
+}
+.sphere-ring-2 {
+  position: absolute;
+  width: 420px; height: 420px;
+  border: 1px solid rgba(167,139,250,0.08);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%) rotateX(75deg) rotateZ(60deg);
+  pointer-events: none;
+  animation: ringPulse 5s ease-in-out 1s infinite;
+}
+@keyframes ringPulse {
+  0%,100% { opacity:0.4; }
+  50% { opacity:0.9; }
+}
+
+/* ─── EACH ICON NODE ─── */
+.tech-node {
+  position: absolute;
+  width: 64px; height: 64px;
+  transform-style: preserve-3d;
+  top: 50%; left: 50%;
+  margin: -32px 0 0 -32px;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.tech-node-inner {
+  width: 100%; height: 100%;
+  background: rgba(10, 20, 38, 0.85);
+  border: 1px solid rgba(56,189,248,0.2);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4), inset 0 1px 0 rgba(56,189,248,0.1);
+}
+
+.tech-node:hover .tech-node-inner {
+  border-color: rgba(56,189,248,0.6);
+  background: rgba(56,189,248,0.12);
+  box-shadow: 0 0 24px rgba(56,189,248,0.3), inset 0 1px 0 rgba(56,189,248,0.2);
+  transform: scale(1.12);
+}
+
+.tech-node svg,
+.tech-node img {
+  width: 28px; height: 28px;
+  display: block;
+  object-fit: contain;
+}
+
+.tech-node span {
+  font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
+  font-size: 8px;
+  color: rgba(148,163,184,0.8);
+  letter-spacing: 0.05em;
+  text-align: center;
+  line-height: 1;
+}
+
+/* ─── TOOLTIP ─── */
+.sphere-tooltip {
+  position: fixed;
+  background: rgba(10,20,38,0.95);
+  border: 1px solid rgba(56,189,248,0.3);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  color: #e2e8f0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+}
+.sphere-tooltip.show { opacity: 1; }
+.sphere-tooltip .tt-name { font-weight: 700; color: #38bdf8; }
+.sphere-tooltip .tt-cat { font-size: 0.68rem; color: #64748b; margin-top: 2px; }
+
+/* ─── CONTROLS PANEL ─── */
+.sphere-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 280px;
+}
+
+.sphere-controls h3 {
+  font-family: 'Orbitron', monospace;
+  font-size: 1rem;
+  color: #e2e8f0;
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+
+.ctrl-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ctrl-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: #64748b;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  min-width: 90px;
+}
+
+.ctrl-slider {
+  flex: 1;
+  -webkit-appearance: none;
+    appearance: none;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(56,189,248,0.15);
+    outline: none;
+    cursor: pointer;
+  }
+  .ctrl-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(56,189,248,0.5);
+}
+
+.ctrl-btn {
+  background: rgba(56,189,248,0.08);
+  border: 1px solid rgba(56,189,248,0.25);
+  border-radius: 8px;
+  color: #38bdf8;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.05em;
+  width: 100%;
+  text-align: center;
+}
+.ctrl-btn:hover { background: rgba(56,189,248,0.18); border-color: #38bdf8; }
+.ctrl-btn.active { background: rgba(56,189,248,0.2); border-color: #38bdf8; color: #fff; }
+
+.ctrl-stats {
+  background: rgba(56,189,248,0.04);
+  border: 1px solid rgba(56,189,248,0.1);
+  border-radius: 10px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+.ctrl-stat-item { text-align: center; }
+.ctrl-stat-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.3rem;
+  color: #38bdf8;
+  font-weight: 700;
+  display: block;
+}
+.ctrl-stat-lbl {
+  font-size: 0.65rem;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hint-text {
+  font-size: 0.72rem;
+  color: #475569;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-top: 4px;
+}
+.hint-text i { color: #38bdf8; font-size: 0.75rem; margin-right: 4px; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .scene { width: 340px; height: 340px; }
+  .sphere-glow { width: 320px; height: 320px; }
+  .sphere-ring, .sphere-ring-2 { width: 320px; height: 320px; }
+  .sphere-wrapper { gap: 40px; }
+  .sphere-controls { max-width: 100%; }
+}
+@media (max-width: 600px) {
+  .scene { width: 280px; height: 280px; }
+  .sphere-glow { width: 260px; height: 260px; }
+  .sphere-ring, .sphere-ring-2 { width: 260px; height: 260px; }
+  .tech-node { width: 48px; height: 48px; margin: -24px 0 0 -24px; }
+  .tech-node svg, .tech-node img { width: 20px; height: 20px; }
+  .tech-node span { font-size: 6px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ============================================
    KODE.BWM — Elite ICT Studio Stylesheet v2.0
    ============================================ */
@@ -1669,29 +2373,87 @@ em { font-style: normal; }
 <!-- ============================
      TECH STACK SECTION
      ============================ -->
-<section class="section tech-section">
+<section class="sphere-section" id="tech-stack">
   <div class="tech-bg-pattern"></div>
-  <div class="container">
-    <div class="section-header">
-      <div class="section-eyebrow mono">// 002 — Our Arsenal</div>
-      <h2>Technologies We<br><span class="gradient-text">Master</span></h2>
+  <div class="container" style="max-width:1200px;margin:0 auto;padding:0 40px;">
+    <div style="text-align:center;margin-bottom:0;">
+      <div class="section-eyebrow" style="font-size:0.72rem;letter-spacing:0.2em;color:#38bdf8;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:14px;font-family:'JetBrains Mono',monospace;">// 002 — Our Arsenal</div>
+      <h2 style="font-family:'Orbitron',monospace;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;margin-bottom:12px;">Technologies We <span style="background:linear-gradient(135deg,#38bdf8,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Master</span></h2>
+      <p style="color:#64748b;font-size:0.95rem;max-width:480px;margin:0 auto 8px;line-height:1.65;">Drag to rotate · Scroll to zoom · Hover icons to explore</p>
     </div>
-    <div class="tech-grid">
-      <div class="tech-item" style="--delay:0s"><div class="tech-icon">⚛️</div><span>React</span></div>
-      <div class="tech-item" style="--delay:0.05s"><div class="tech-icon">🟩</div><span>Node.js</span></div>
-      <div class="tech-item" style="--delay:0.1s"><div class="tech-icon">🐘</div><span>PHP</span></div>
-      <div class="tech-item" style="--delay:0.15s"><div class="tech-icon">🗄️</div><span>MySQL</span></div>
-      <div class="tech-item" style="--delay:0.2s"><div class="tech-icon">🎨</div><span>Figma</span></div>
-      <div class="tech-item" style="--delay:0.25s"><div class="tech-icon">📷</div><span>Photoshop</span></div>
-      <div class="tech-item" style="--delay:0.3s"><div class="tech-icon">🖊️</div><span>Illustrator</span></div>
-      <div class="tech-item" style="--delay:0.35s"><div class="tech-icon">☁️</div><span>AWS</span></div>
-      <div class="tech-item" style="--delay:0.4s"><div class="tech-icon">🐳</div><span>Docker</span></div>
-      <div class="tech-item" style="--delay:0.45s"><div class="tech-icon">📱</div><span>WordPress</span></div>
-      <div class="tech-item" style="--delay:0.5s"><div class="tech-icon">🐍</div><span>Python</span></div>
-      <div class="tech-item" style="--delay:0.55s"><div class="tech-icon">🔥</div><span>Firebase</span></div>
+
+    <div class="sphere-wrapper">
+
+      <!-- THE 3D SPHERE SCENE -->
+      <div style="position:relative;">
+        <div class="sphere-glow"></div>
+        <div class="sphere-ring"></div>
+        <div class="sphere-ring-2"></div>
+        <div class="scene" id="sphereScene">
+          <div class="sphere-3d" id="sphere3d">
+            <!-- Nodes injected by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTROLS PANEL -->
+      <div class="sphere-controls">
+        <h3>// Controls</h3>
+
+        <div>
+          <div class="ctrl-row">
+            <span class="ctrl-label">Auto Speed</span>
+            <input type="range" class="ctrl-slider" id="speedCtrl" min="0" max="100" value="30"/>
+          </div>
+          <div class="ctrl-row" style="margin-top:10px;">
+            <span class="ctrl-label">Zoom</span>
+            <input type="range" class="ctrl-slider" id="zoomCtrl" min="60" max="160" value="100"/>
+          </div>
+          <div class="ctrl-row" style="margin-top:10px;">
+            <span class="ctrl-label">Node Size</span>
+            <input type="range" class="ctrl-slider" id="sizeCtrl" min="40" max="90" value="64"/>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <button class="ctrl-btn active" id="toggleAutoBtn">⏸ Pause</button>
+          <button class="ctrl-btn" id="resetBtn">↺ Reset</button>
+          <button class="ctrl-btn" id="scatterBtn">✦ Scatter</button>
+          <button class="ctrl-btn" id="gatherBtn">⬤ Gather</button>
+        </div>
+
+        <div class="ctrl-stats">
+          <div class="ctrl-stat-item">
+            <span class="ctrl-stat-num" id="statNodes">18</span>
+            <span class="ctrl-stat-lbl">Technologies</span>
+          </div>
+          <div class="ctrl-stat-item">
+            <span class="ctrl-stat-num" id="statRPM">12</span>
+            <span class="ctrl-stat-lbl">RPM</span>
+          </div>
+          <div class="ctrl-stat-item">
+            <span class="ctrl-stat-num" id="statHovered">—</span>
+            <span class="ctrl-stat-lbl">Focused</span>
+          </div>
+          <div class="ctrl-stat-item">
+            <span class="ctrl-stat-num" id="statZoom">100%</span>
+            <span class="ctrl-stat-lbl">Zoom</span>
+          </div>
+        </div>
+
+        <p class="hint-text"><i class="fas fa-mouse-pointer"></i> Drag the sphere with your mouse or finger</p>
+      </div>
     </div>
   </div>
 </section>
+
+
+
+<div class="sphere-tooltip" id="sphereTooltip">
+  <div class="tt-name" id="ttName"></div>
+  <div class="tt-cat" id="ttCat"></div>
+</div>
+
 
 <!-- ============================
      PORTFOLIO PREVIEW
@@ -2080,23 +2842,171 @@ em { font-style: normal; }
       </div>
 
       <!-- GOOGLE MAP -->
-      <div class="map-block">
-        <h3><i class="fas fa-map-marked-alt"></i> Find Us</h3>
-        <div class="map-container">
+    <!-- ══════════ HTML (paste where you want the map) ══════════ -->
+<div style="max-width:800px;margin:0 auto;width:100%;">
+
+  <!-- Section Header (optional — remove if using your existing section header) -->
+  <div style="text-align:center;margin-bottom:48px;">
+    <div style="font-size:0.72rem;letter-spacing:0.2em;color:#38bdf8;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:8px;">
+      <span style="display:inline-block;width:20px;height:1px;background:#38bdf8;"></span>
+      Find Us
+      <span style="display:inline-block;width:20px;height:1px;background:#38bdf8;"></span>
+    </div>
+    <h2 style="font-family:'Orbitron',monospace;font-size:clamp(1.6rem,3vw,2.5rem);color:#e2e8f0;margin-bottom:10px;">Our <span style="background:linear-gradient(135deg,#38bdf8,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Location</span></h2>
+    <p style="color:#64748b;font-size:0.9rem;font-family:'Space Grotesk',sans-serif;">Plot 17, Block 16, Masajja — Wakiso, Uganda</p>
+  </div>
+
+  <!-- LAPTOP FRAME -->
+  <div class="laptop-map-wrap">
+
+    <!-- LID -->
+    <div class="lm-lid">
+
+      <!-- Browser bar -->
+      <div class="lm-browser-bar">
+        <div class="lm-dots">
+          <div class="lm-dot red"></div>
+          <div class="lm-dot yellow"></div>
+          <div class="lm-dot green"></div>
+        </div>
+        <div class="lm-nav-btns">
+          <div class="lm-nav-btn">&#8592;</div>
+          <div class="lm-nav-btn">&#8594;</div>
+          <div class="lm-nav-btn">&#8635;</div>
+        </div>
+        <div class="lm-url-bar">
+          <span class="lm-url-lock">&#128274;</span>
+          <span class="lm-url-text">
+            maps.google.com/
+            <span class="url-highlight">@Masajja,Wakiso,Uganda</span>
+          </span>
+        </div>
+        <div class="lm-nav-btns">
+          <div class="lm-nav-btn">&#8942;</div>
+        </div>
+      </div>
+
+      <!-- Bezel + map -->
+      <div class="lm-bezel">
+        <div class="lm-map-container">
+
+          <!-- LOCATION OVERLAY -->
+          <div class="lm-map-overlay">
+            <div class="lm-loc-label">Live Location</div>
+            <div class="lm-loc-name">KODE.BWM Studio</div>
+            <div class="lm-loc-sub">Masajja, Wakiso, Uganda</div>
+          </div>
+
+          <!-- GOOGLE MAP IFRAME -->
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.756!2d32.612!3d0.286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMasajja%2C%20Wakiso%2C%20Uganda!5e0!3m2!1sen!2sug!4v1620000000000!5m2!1sen!2sug"
-            width="100%"
-            height="250"
-            style="border:0;border-radius:12px;"
+            id="laptopMapFrame"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7568!2d32.6127!3d0.2865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb5eda0e25e7%3A0x4b2b0cb5cd5c00c1!2sMasajja%2C%20Wakiso%2C%20Uganda!5e0!3m2!1sen!2sug!4v1700000000000!5m2!1sen!2sug"
             allowfullscreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
+            referrerpolicy="no-referrer-when-downgrade"
+            title="KODE.BWM Location — Masajja, Wakiso">
           </iframe>
+
+          <!-- DIRECTIONS BUTTON -->
+          <a
+            href="https://maps.google.com/?q=Masajja+Wakiso+Uganda"
+            target="_blank"
+            class="lm-directions-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            Get Directions
+          </a>
+
         </div>
-        <a href="https://maps.google.com/?q=Masajja+Wakiso+Uganda" target="_blank" class="directions-btn">
-          <i class="fas fa-directions"></i> Get Directions
-        </a>
+
+        <!-- Status bar -->
+        <div class="lm-status-bar">
+          <div class="lm-status-left">
+            <div class="lm-status-item">
+              <div class="lm-status-dot"></div>
+              <span>Maps Loaded</span>
+            </div>
+            <span>Masajja · Wakiso District · Uganda</span>
+          </div>
+          <span>Google Maps &copy; 2025</span>
+        </div>
       </div>
+    </div>
+
+    <!-- HINGE -->
+    <div class="lm-hinge"></div>
+
+    <!-- BASE / KEYBOARD -->
+    <div class="lm-base">
+      <!-- Keyboard rows -->
+      <div class="lm-kb-row">
+        <div class="lm-key"></div><div class="lm-key"></div><div class="lm-key"></div>
+        <div class="lm-key"></div><div class="lm-key"></div><div class="lm-key"></div>
+        <div class="lm-key"></div><div class="lm-key"></div><div class="lm-key"></div>
+        <div class="lm-key"></div><div class="lm-key"></div><div class="lm-key"></div>
+        <div class="lm-key"></div><div class="lm-key wide"></div>
+      </div>
+      <div class="lm-kb-row">
+        <div class="lm-key wide"></div>
+        <div class="lm-key"></div><div class="lm-key"></div><div class="lm-key"></div>
+        <div class="lm-key"></div><div class="lm-key"></div><div class="lm-key"></div>
+        <div class="lm-key"></div><div class="lm-key"></div><div class="lm-key"></div>
+        <div class="lm-key"></div><div class="lm-key"></div><div class="lm-key wide"></div>
+      </div>
+      <div class="lm-kb-row">
+        <div class="lm-key wide"></div>
+        <div class="lm-key"></div><div class="lm-key"></div><div class="lm-key"></div>
+        <div class="lm-key"></div><div class="lm-key"></div><div class="lm-key"></div>
+        <div class="lm-key"></div><div class="lm-key"></div><div class="lm-key"></div>
+        <div class="lm-key wide"></div>
+      </div>
+      <div class="lm-kb-row">
+        <div class="lm-key wide"></div>
+        <div class="lm-key space"></div>
+        <div class="lm-key wide"></div>
+      </div>
+
+      <!-- Trackpad -->
+      <div class="lm-trackpad"></div>
+    </div>
+
+    <!-- Base glow -->
+    <div class="lm-glow"></div>
+
+    <!-- Contact strip below laptop -->
+    <div class="lm-contact-strip">
+      <a href="https://maps.google.com/?q=Masajja+Wakiso+Uganda" target="_blank" class="lm-contact-item">
+        <div class="lm-ci-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="lm-ci-text">
+          <strong>Address</strong>
+          <span>Plot 17, Masajja, Wakiso</span>
+        </div>
+      </a>
+      <a href="tel:+256704125517" class="lm-contact-item">
+        <div class="lm-ci-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="lm-ci-text">
+          <strong>Phone</strong>
+          <span>+256 704 125517</span>
+        </div>
+      </a>
+      <a href="mailto:kode.bwm1617@gmail.com" class="lm-contact-item">
+        <div class="lm-ci-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="lm-ci-text">
+          <strong>Email</strong>
+          <span>kode.bwm1617@gmail.com</span>
+        </div>
+      </a>
+    </div>
+
+  </div><!-- end laptop-map-wrap -->
+</div>
+
+
     </div>
   </div>
 
@@ -2245,7 +3155,7 @@ em { font-style: normal; }
   </div>
 </div>
 
-
+<script src="3d.js"></script>
 
 <script>
 
@@ -3003,7 +3913,31 @@ function initCounters() {
       link.classList.add('active');
     }
   });
-})();
+})(); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
